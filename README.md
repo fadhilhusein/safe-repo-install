@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🛡️ safe-repo-install
+<img src="assets/banner.webp" alt="safe-repo-install: audit before you install. Know what runs behind the scenes. Flow: GitHub URL, quarantine, read-only audit, review findings, verdict (AMAN, WASPADA, BLOKIR), install without .git." width="100%">
 
-**Audit before you install. Know what runs behind the scenes.**
+<h1 hidden>safe-repo-install</h1>
 
 An AI agent skill that quarantines any public GitHub repo, scans it for hidden
 code-execution paths, and only installs it after you have seen the verdict.

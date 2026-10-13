@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🛡️ safe-repo-install
+<img src="assets/banner.webp" alt="safe-repo-install: audit dulu sebelum pasang. Alur: URL GitHub, karantina, audit read-only, tinjau temuan, verdict (AMAN, WASPADA, BLOKIR), pasang tanpa .git." width="100%">
 
-**Audit dulu sebelum pasang. Ketahui apa yang berjalan diam-diam.**
+<h1 hidden>safe-repo-install</h1>
 
 Skill untuk AI agent yang mengkarantina repo GitHub publik, memindainya untuk
 mencari jalur eksekusi kode tersembunyi, dan baru memasangnya setelah Anda
