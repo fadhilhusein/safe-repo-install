@@ -1,0 +1,6 @@
+# Shell scripts must keep LF endings or bash fails with "\r: command not found".
+*.sh text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.ps1 text eol=lf

