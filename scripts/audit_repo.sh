@@ -41,12 +41,13 @@ DOCS=(--exclude=*.md --exclude=*.txt --exclude=*.rst --exclude=*.adoc)
 # scan LEVEL LABEL REGEX [all|code] [grep flags and --include globs]
 # "code" mode skips prose files, where words like curl are usually just documentation.
 scan() {
-  local level="$1" label="$2" re="$3" mode="${4:-all}" flags="-E" out n
-  [ $# -ge 5 ] && flags="${*:5}"
+  local level="$1" label="$2" re="$3" mode="${4:-all}" out n
+  local -a flags=(-E)
+  [ $# -ge 5 ] && flags=("${@:5}")
   if [ "$mode" = code ]; then
-    out=$(grep -rIn $flags "${EXCL[@]}" "${DOCS[@]}" -e "$re" . 2>/dev/null)
+    out=$(grep -rIn "${flags[@]}" "${EXCL[@]}" "${DOCS[@]}" -e "$re" . 2>/dev/null)
   else
-    out=$(grep -rIn $flags "${EXCL[@]}" -e "$re" . 2>/dev/null)
+    out=$(grep -rIn "${flags[@]}" "${EXCL[@]}" -e "$re" . 2>/dev/null)
   fi
   [ -z "$out" ] && return 0
   n=$(printf '%s\n' "$out" | wc -l | tr -d ' ')
@@ -115,7 +116,7 @@ if [ -f .git/config ]; then
   done < <(grep -inE "=[[:space:]]*!|(^|[[:space:]=])(sh|bash|zsh|cmd|powershell|pwsh)([[:space:]]|\$)|curl|wget" .git/config)
   # Unexpected sections: a plain clone only has core, remote and branch.
   while IFS= read -r sec; do
-    name=$(printf '%s' "$sec" | sed -E 's/^\[([A-Za-z0-9.-]+).*/\1/' | tr 'A-Z' 'a-z')
+    name=$(printf '%s' "$sec" | sed -E 's/^\[([A-Za-z0-9.-]+).*/\1/' | tr '[:upper:]' '[:lower:]')
     case "$name" in
       core | remote | branch) ;;
       *) emit WARN git-config "unexpected section $sec" ;;
